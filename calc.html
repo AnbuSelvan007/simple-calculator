@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anbu's Calc</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <center>
+    <h1>SIMPLE CALCULATOR</h1>
+    <input type="text" value="Anbu's calc" id="hello" disabled>
+    <div class="container">
+        
+        <div class="row">
+            <div class="box c" onclick="set('c')">C</div>
+            <div class="box d" onclick="set('d')">d</div>
+            <div class="box p" onclick="set('^')">^</div>
+            <div class="box m" onclick="set('%')">%</div>
+            
+        </div>
+        <div class="row">
+            <div class="box 1" onclick="set('1')">1</div>
+            <div class="box 2" onclick="set('2')">2</div>
+            <div class="box 3" onclick="set('3')">3</div>
+            <div class="box di" onclick="set('/')">/</div>
+           
+        </div>
+        <div class="row">
+            <div class="box 4" onclick="set('4')">4</div>
+            <div class="box 5" onclick="set('5')">5</div>
+            <div class="box 6" onclick="set('6')">6</div>
+            <div class="box mul" onclick="set('*')">*</div>
+           
+        </div>
+        <div class="row">
+            <div class="box 7" onclick="set('7')">7</div>
+            <div class="box 8" onclick="set('8')">8</div>
+            <div class="box 9" onclick="set('9')">9</div>
+            <div class="box mi" onclick="set('-')">-</div>
+            
+        </div>
+        <div class="row">
+            <div class="box " >&#128521;</div>
+            <div class="box " onclick="set('0')">0</div>
+            <div class="box " onclick="add()">=</div>
+            <div class="box " onclick="set('+')">+</div>
+            
+        </div>
+    </div>
+</center>
+<script>
+   function add(){
+    let t1=0,t2=0;
+   if(k!='')
+    arr.push(k);
+    k='';
+
+  while(arr.length>1){
+    if(t1==0)
+    {
+        for(let i=0;i<arr.length;i++)
+        {
+            if(arr[i]=='%')
+            {
+                arr[i-1]=Number(arr[i-1])%Number(arr[i+1]);
+                for(let j=i;j<arr.length-2;j++)
+                {
+                    arr[j]=arr[j+2];
+                }
+                arr.pop();
+                arr.pop();
+                break;
+            }
+            if(arr[i]=='^')
+            {
+                arr[i-1]=Math.pow(Number(arr[i-1]),Number(arr[i+1]));
+                for(let j=i;j<arr.length-2;j++)
+                {
+                    arr[j]=arr[j+2];
+                }
+                arr.pop();
+                arr.pop();
+                break;
+            }
+            if(i==arr.length-1)
+            {
+                t1=1;
+            }
+        }
+    }
+    if(t2==0)
+    {
+        for(let i=0;i<arr.length;i++)
+        {
+         if(arr[i]=='*')
+            {
+                arr[i-1]=Number(arr[i-1])*Number(arr[i+1]);
+                for(let j=i;j<arr.length-2;j++)
+                {
+                    arr[j]=arr[j+2];
+                }
+                arr.pop();
+                arr.pop();
+                break;
+            }
+            if(arr[i]=='/')
+            {
+                arr[i-1]=Number(arr[i-1])/Number(arr[i+1]);
+                for(let j=i;j<arr.length-2;j++)
+                {
+                    arr[j]=arr[j+2];
+                }
+                arr.pop();
+                arr.pop();
+                break;
+            }
+            if(i==arr.length-1)
+            {
+                t2=1;
+            }
+        }
+    }
+   
+        for(let i=0;i<arr.length;i++)
+        {
+            if(arr[i]=='+')
+            {
+                arr[i-1]=Number(arr[i-1])+Number(arr[i+1]);
+                for(let j=i;j<arr.length-2;j++)
+                {
+                    arr[j]=arr[j+2];
+                }
+                arr.pop();
+                arr.pop();
+                console.log(arr);
+                break;
+            }
+            if(arr[i]=='-')
+            {
+                arr[i-1]=Number(arr[i-1])-Number(arr[i+1]);
+                for(let j=i;j<arr.length-2;j++)
+                {
+                    arr[j]=arr[j+2];
+                }
+                arr.pop();
+                arr.pop();
+                break;
+            }
+        }
+    
+}
+    a.value=arr[0];
+    k='';
+   
+}
+var a=document.getElementById("hello");
+let arr=[];
+let k='';
+let m='';
+
+function set(b)
+{
+    if(m!='c' && m!='d')
+    {
+    m+=b;
+    }
+   if(b=='+' || b=='-' || b=='*' || b=='%' || b=='^' || b=='/')
+   {
+        if(k!='')
+        {
+             arr.push(k);
+        }
+        arr.push(b);
+        k='';
+   }
+   else if(b=='c'){
+        arr=[];
+       
+   }
+   else if(b=='d')
+   {
+    if(k=='')
+        arr.pop();
+        
+    else
+    {
+        k='';
+       m='';
+       
+    }
+    m='';
+    for(let i=0;i<arr.length;i++)
+       {
+        m+=arr[i];
+       }
+   }
+   else{
+    if(arr.length==1)
+    {
+        arr.pop();
+        a.value='';
+    }
+    k+=b;
+   
+   
+   }
+   if(b=='c')
+   m='';
+  a.value=m;
+console.log(arr);
+}
+</script>
+
+</body>
+</html>
